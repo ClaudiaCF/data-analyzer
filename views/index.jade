@@ -1,0 +1,65 @@
+extends layout
+
+block content
+  h1 Coupons 
+  h2 Types of coupons and their appereances:
+  ul
+    each coupon in couponsMetrics.couponsByType 
+      li
+        p #{coupon.promotionType}: #{coupon.total}
+  h2 General statistics
+  h3 ✮ Dollar off coupons 
+  h4 Discount values and their appereances:
+  ul 
+    each dollarOffCoupon in couponsMetrics.couponsDollarOffDiscountsCount
+      li
+        p #{dollarOffCoupon.value}$ : #{dollarOffCoupon.total}
+  h4 --------- Statistics ---------
+  p Mininum value: #{couponsMetrics.couponsDollarOffMin}$
+  p Maximum value: #{couponsMetrics.couponsDollarOffMax}$
+  p Average value: #{couponsMetrics.couponsDollarOffAvg}$
+  h3 ✮ Percent off coupons
+  h4 Discount values and their appereances:
+  ul 
+    each percentOffCoupon in couponsMetrics.couponsPercentOffDiscountsCount
+      li
+        p #{percentOffCoupon.value}%: #{percentOffCoupon.total}
+  h4 --------- Statistics ---------
+  p Mininum value: #{couponsMetrics.couponsPercentOffMin}%
+  p Maximum value: #{couponsMetrics.couponsPercentOffMax}%
+  p Average value: #{couponsMetrics.couponsPercentOffAvg}%
+  h2 Retailers    
+    each retailerData in retailers
+      h3 ✩ #{retailerData.retailerName}
+      p Coupon types and their appereances:
+      ul
+        each coupon in retailerData.couponsByType 
+          li
+            p #{coupon.promotionType}: #{coupon.total}
+      h4 ✮ Dollar off coupons 
+      p Discount values and their appereances:
+      ul 
+        each discount in retailerData.couponsDollarOffDiscountsCount
+          li
+            p #{discount.value}$ : #{discount.total}
+      h4 --------- Statistics ---------
+      p Mininum value: #{retailerData.couponsDollarOffMin}$
+      p Maximum value: #{retailerData.couponsDollarOffMax}$
+      p Average value: #{retailerData.couponsDollarOffAvg}$
+      h4 ✮ Percent off coupons 
+        p Discount values and their appereances:
+      ul 
+        each discount in retailerData.couponsPercentOffDiscountsCount
+          li
+            p #{discount.value}%: #{discount.total}
+
+      h4 --------- Statistics ---------
+      p Mininum value: #{retailerData.couponsPercentOffMin}%
+      p Maximum value: #{retailerData.couponsPercentOffMax}%
+      p Average value: #{retailerData.couponsPercentOffAvg}%
+  h2 Top keywords
+  p Keyword and number of appereances:
+  each appereances, word in topWords
+    p #{word}: #{appereances}
+       
+
